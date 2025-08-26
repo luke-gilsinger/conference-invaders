@@ -204,10 +204,13 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_RIGHT] and self.rect.right < WIDTH:
             self.rect.x += self.speed
         
-        if controller.controller.axes[2].x == -1 and self.rect.left > 0:
-            self.rect.x -= self.speed
-        if controller.controller.axes[2].x == 1 and self.rect.right < WIDTH:
-            self.rect.x += self.speed
+        try:
+            if controller.controller.axes[2].x == -1 and self.rect.left > 0:
+                self.rect.x -= self.speed
+            if controller.controller.axes[2].x == 1 and self.rect.right < WIDTH:
+                self.rect.x += self.speed
+        except:
+            pass
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y, color=WHITE, speed=-10, size=(6, 20)):
